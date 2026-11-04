@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <!-- Підключення Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#1B315A',
+              navyHover: '#132342',
+              orange: '#FF6B35',
+              orangeHover: '#e05824',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <title>MathStep — Онлайн-школа математики</title>
+</head>
+<body class="min-h-screen bg-white font-sans text-slate-800 antialiased selection:bg-brand-orange selection:text-white">
+
+  <!-- ======================================================== -->
+  <!-- 1. ХЕДЕР З НАВІГАЦІЄЮ ТА ЯКОРЯМИ                          -->
+  <!-- ======================================================== -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm transition-all duration-200">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+
+      <!-- Логотип та ШІ-кнопка -->
+      <div class="flex items-center gap-3">
+        <a href="#hero" class="group flex flex-col items-center justify-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange" aria-label="MathStep, на головну">
+          <svg class="h-9 w-auto" viewBox="0 0 48 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="6" y="24" width="7" height="7" fill="#1B315A" />
+            <rect x="13" y="18" width="7" height="7" fill="#1B315A" />
+            <rect x="20" y="12" width="7" height="7" fill="#1B315A" />
+            <rect x="27" y="6" width="7" height="7" fill="#1B315A" />
+            <rect x="34" y="6" width="7" height="25" rx="1.5" fill="#FF6B35" />
+            <path d="M23 27H29M26 24V30" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          <span class="-mt-1 text-base font-bold tracking-tight">
+            <span class="text-brand-navy">Math</span><span class="text-brand-orange">Step</span>
+          </span>
+        </a>
+
+        <!-- Кнопка ШІ -->
+        <button id="open-ai-chat" type="button" class="inline-flex items-center gap-1.5 rounded-full border border-orange-200 bg-orange-50 px-3 py-1.5 text-xs font-semibold text-brand-orange transition-all duration-200 hover:bg-orange-100 hover:shadow-sm active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-orange opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-orange"></span>
+          </span>
+          <i class="fa-solid fa-wand-magic-sparkles text-[10px]" aria-hidden="true"></i>
+          <span>AI Помічник</span>
+        </button>
+      </div>
+
+      <!-- Меню навігації (десктоп) -->
+      <nav class="hidden items-center md:flex" aria-label="Головне меню">
+        <ul class="flex items-center gap-8">
+          <li>
+            <a href="#hero" class="rounded px-1 py-1 text-base font-semibold text-brand-navy transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+              Головна
+            </a>
+          </li>
+          <li>
+            <a href="#courses" class="rounded px-1 py-1 text-base font-semibold text-brand-navy transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+              Курси
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="rounded px-1 py-1 text-base font-semibold text-brand-navy transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+              Про нас
+            </a>
+          </li>
+          <li>
+            <a href="#contacts" class="rounded px-1 py-1 text-base font-semibold text-brand-navy transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+              Контакти
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- CTA-кнопка -->
+      <a href="#enroll" class="hidden min-h-[44px] items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy focus-visible:ring-offset-2 md:inline-flex">
+        <span aria-hidden="true">&rarr;</span>
+        <span>Записатися на заняття</span>
+      </a>
+
+      <!-- Гамбургер для мобільних пристроїв -->
+      <button id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Відкрити меню" class="block rounded-lg p-2 text-slate-800 transition-colors duration-200 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange md:hidden">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Мобільне меню -->
+    <div id="mobile-menu" class="hidden border-t border-slate-100 px-4 py-4 md:hidden">
+      <nav aria-label="Мобільне меню" class="flex flex-col gap-3">
+        <a href="#hero" class="mobile-nav-link rounded-md px-3 py-2 text-base font-semibold text-brand-navy transition-colors duration-150 hover:bg-slate-50 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Головна</a>
+        <a href="#courses" class="mobile-nav-link rounded-md px-3 py-2 text-base font-semibold text-brand-navy transition-colors duration-150 hover:bg-slate-50 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Курси</a>
+        <a href="#about" class="mobile-nav-link rounded-md px-3 py-2 text-base font-semibold text-brand-navy transition-colors duration-150 hover:bg-slate-50 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Про нас</a>
+        <a href="#contacts" class="mobile-nav-link rounded-md px-3 py-2 text-base font-semibold text-brand-navy transition-colors duration-150 hover:bg-slate-50 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Контакти</a>
+        <a href="#enroll" class="mobile-nav-link mt-2 flex min-h-[44px] items-center justify-center rounded-lg bg-brand-navy px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+          Записатися на заняття
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Модальне вікно AI Помічника -->
+  <div id="ai-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm">
+    <div class="flex h-[520px] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <!-- Шапка чату -->
+      <div class="flex items-center justify-between bg-brand-navy px-6 py-4 text-white">
+        <div class="flex items-center gap-3">
+          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-brand-orange">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold">MathStep AI Тьютор</h3>
+            <p class="text-xs text-slate-300">Відповідає на запитання про навчання</p>
+          </div>
+        </div>
+        <button id="close-ai-chat" type="button" class="rounded-lg p-1.5 text-slate-300 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange" aria-label="Закрити чат">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Повідомлення -->
+      <div id="ai-messages" class="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
+        <div class="flex items-start gap-2.5">
+          <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-100 text-brand-navy">
+            <i class="fa-solid fa-robot text-xs"></i>
+          </div>
+          <div class="rounded-2xl rounded-tl-none bg-slate-100 p-3 text-slate-700">
+            Привіт! Я віртуальний помічник MathStep. Запитайте мене про формати занять, тривалість уроків або як обрати тариф!
+          </div>
+        </div>
+      </div>
+
+      <!-- Швидкі кнопки -->
+      <div class="flex gap-2 overflow-x-auto border-t border-slate-100 bg-slate-50 px-4 py-2 text-xs">
+        <button type="button" class="ai-quick-btn shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-600 hover:border-brand-orange hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+          Як проходить перший урок?
+        </button>
+        <button type="button" class="ai-quick-btn shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-600 hover:border-brand-orange hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+          Скільки триває заняття?
+        </button>
+        <button type="button" class="ai-quick-btn shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-600 hover:border-brand-orange hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+          Які є знижки?
+        </button>
+      </div>
+
+      <!-- Поле вводу -->
+      <form id="ai-form" class="flex items-center gap-2 border-t border-slate-200 p-3">
+        <input id="ai-input" type="text" placeholder="Напишіть своє запитання..." class="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy">
+        <button type="submit" aria-label="Надіслати запитання" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white hover:bg-brand-orangeHover active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+          <i class="fa-solid fa-paper-plane text-xs"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ======================================================== -->
+    <!-- 2. HERO-СЕКЦІЯ (#hero)                                   -->
+    <!-- ======================================================== -->
+    <section id="hero" class="scroll-mt-16 bg-white py-12 lg:py-20" aria-labelledby="hero-title">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        
+        <div class="flex flex-col items-start">
+          <p class="text-sm font-bold tracking-wide text-brand-orange">
+            — Онлайн-школа математики MathStep
+          </p>
+          
+          <h1 id="hero-title" class="mt-4 text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
+            Математика, яку легко зрозуміти
+          </h1>
+          
+          <p class="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
+            Навчаємо онлайн у темпі вашої дитини. Пояснюємо складне простими словами, разом розбираємо задачі й крок за кроком будуємо впевненість.
+          </p>
+          
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href="#enroll" class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-brand-navy px-7 py-3 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy focus-visible:ring-offset-2">
+              <span aria-hidden="true">&rarr;</span>
+              <span>Спробувати перше заняття</span>
+            </a>
+          </div>
+          
+          <div class="mt-8 flex items-center gap-2 text-sm text-slate-600">
+            <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Без поспіху. Без страху помилитися.</span>
+          </div>
+        </div>
+
+        <!-- Ілюстрація Hero (eager loading для LCP) -->
+        <div class="relative flex flex-col items-center justify-center">
+          <div class="w-full max-w-lg overflow-hidden rounded-3xl bg-slate-100 p-2 shadow-sm transition-shadow duration-300 hover:shadow-md">
+            <img 
+              src="assets/images/hero-illustration.png" 
+              alt="Учениця займається математикою онлайн з викладачем"
+              class="h-auto w-full rounded-2xl object-cover"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <p class="mt-4 text-xs font-medium text-slate-400">
+            Маленькі кроки. Справжнє розуміння.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 3. СЕКЦІЯ "ЧОМУ MATHSTEP" (#about)                        -->
+    <!-- ======================================================== -->
+    <section id="about" class="scroll-mt-16 border-t border-slate-100 bg-slate-50/50 py-16" aria-labelledby="why-heading">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-12 text-left">
+          <p class="text-sm font-bold text-brand-orange">— Чому MathStep</p>
+          <h2 id="why-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+            Коли зрозуміло — тоді цікаво
+          </h2>
+          <p class="mt-2 text-base text-slate-600">
+            Створюємо простір, де можна запитувати, помилятися й пробувати знову.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="flex flex-col justify-start rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <h3 class="text-lg font-bold text-brand-navy">Індивідуальний підхід</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Враховуємо знання, цілі та темп дитини, щоб кожен крок був посильним.</p>
+          </article>
+
+          <article class="flex flex-col justify-start rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <h3 class="text-lg font-bold text-brand-navy">Досвідчені викладачі</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Уважно слухаємо, підтримуємо й допомагаємо знайти власний шлях до розв’язання.</p>
+          </article>
+
+          <article class="flex flex-col justify-start rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <h3 class="text-lg font-bold text-brand-navy">Зручне онлайн-навчання</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Займайтеся з дому: потрібні лише інтернет, ноутбук і бажання розібратися.</p>
+          </article>
+
+          <article class="flex flex-col justify-start rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+            <h3 class="text-lg font-bold text-brand-navy">Зрозуміле пояснення складних тем</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">Від простого прикладу до складної задачі — без зайвих слів і зубріння.</p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 4. СЕКЦІЯ ЗАЙНЯТЬ (#courses)                             -->
+    <!-- ======================================================== -->
+    <section id="courses" class="scroll-mt-16 py-16" aria-labelledby="courses-title">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-10 text-left">
+          <p class="text-sm font-bold text-brand-orange">— Наші заняття</p>
+          <h2 id="courses-title" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+            Знайдімо ваш наступний крок
+          </h2>
+          <p class="mt-2 text-base text-slate-600">
+            Оберіть формат під навчальні потреби дитини. Ми допоможемо визначити, з чого почати.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Картка 1 -->
+          <article class="flex w-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-brand-navy" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                </span>
+                <p class="text-sm font-bold text-brand-orange">— У власному темпі</p>
+              </div>
+              <h3 class="text-xl font-bold text-brand-navy">Індивідуальні заняття</h3>
+              <p class="leading-relaxed text-slate-600">Працюємо над темами, які потребують уваги. Викладач підбирає пояснення й задачі саме для вашої дитини.</p>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати заняття</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Картка 2 -->
+          <article class="flex w-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-brand-navy" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </span>
+                <p class="text-sm font-bold text-brand-orange">— Спокійна підготовка</p>
+              </div>
+              <h3 class="text-xl font-bold text-brand-navy">Підготовка до контрольних</h3>
+              <p class="leading-relaxed text-slate-600">Повторюємо потрібні теми, розбираємо типові завдання та вчимося перевіряти власні розв’язання.</p>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати підготовку</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Картка 3 -->
+          <article class="flex w-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:col-span-2 lg:col-span-1">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-brand-navy" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                </span>
+                <p class="text-sm font-bold text-brand-orange">— Крок за кроком</p>
+              </div>
+              <h3 class="text-xl font-bold text-brand-navy">Допомога зі шкільною програмою</h3>
+              <p class="leading-relaxed text-slate-600">Пояснюємо незрозуміле на уроках, заповнюємо прогалини та закріплюємо матеріал зрозумілою практикою.</p>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-6 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати підтримку</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 5. СЕКЦІЯ ТАРИФІВ (#tariffs)                             -->
+    <!-- ======================================================== -->
+    <section id="tariffs" class="scroll-mt-16 border-t border-slate-100 bg-slate-50/50 py-16" aria-labelledby="tariffs-heading">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="mb-10 text-left">
+          <p class="text-sm font-bold text-brand-orange">— Тарифи та формати навчання</p>
+          <h2 id="tariffs-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+            Тарифи та формати навчання
+          </h2>
+          <p class="mt-2 text-base text-slate-600">
+            Обирайте зручний формат навчання — індивідуально з викладачем або в невеликій групі
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+          <!-- Тариф 1 -->
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded bg-blue-50 text-xs text-brand-navy" aria-hidden="true">👤</span>
+                <span class="text-xs font-semibold text-brand-orange">Індивідуальний</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Індивідуальний «Старт»</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">Навчання один на один із викладачем. Пояснення складних тем і допомога зі шкільною програмою.</p>
+              <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                <span aria-hidden="true">📅</span>
+                <span>4 заняття на місяць / 60 хвилин кожне</span>
+              </div>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[42px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати тариф</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Тариф 2 (Популярний) -->
+          <article class="relative flex flex-col justify-between rounded-2xl border-2 border-brand-orange bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-orange px-3 py-0.5 text-xs font-bold text-white shadow-sm">
+              Популярний
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded bg-blue-50 text-xs text-brand-navy" aria-hidden="true">👤</span>
+                <span class="text-xs font-semibold text-brand-orange">Індивідуальний</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Індивідуальний «Комфорт»</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">Індивідуальна програма навчання. Домашні завдання та регулярне відстеження прогресу.</p>
+              <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                <span aria-hidden="true">📅</span>
+                <span>8 занять на місяць / 60 хвилин кожне</span>
+              </div>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[42px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати тариф</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Тариф 3 -->
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded bg-blue-50 text-xs text-brand-navy" aria-hidden="true">👤</span>
+                <span class="text-xs font-semibold text-brand-orange">Індивідуальний</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Індивідуальний «Інтенсив»</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">Поглиблене вивчення математики. Підготовка до контрольних і важливих іспитів.</p>
+              <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                <span aria-hidden="true">📅</span>
+                <span>12 занять на місяць / 60 хвилин кожне</span>
+              </div>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[42px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати тариф</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Тариф 4 -->
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded bg-blue-50 text-xs text-brand-navy" aria-hidden="true">👥</span>
+                <span class="text-xs font-semibold text-brand-orange">Груповий</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Груповий «Разом до успіху»</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">Навчання в невеликій групі. Спільне розв’язування задач, обговорення та підтримка викладача.</p>
+              <div class="mt-6 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                <span aria-hidden="true">📅</span>
+                <span>8 занять на місяць / 60 хвилин кожне</span>
+              </div>
+            </div>
+            <div class="mt-8">
+              <a href="#enroll" class="inline-flex min-h-[42px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-navyHover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <span aria-hidden="true">&rarr;</span>
+                <span>Обрати тариф</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- КАЛЬКУЛЯТОР ВАРТОСТІ НАВЧАННЯ (#calculator)              -->
+    <!-- ======================================================== -->
+    <section id="calculator" class="scroll-mt-16 bg-white py-16" aria-labelledby="calc-heading">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-10 text-center">
+          <p class="text-sm font-bold text-brand-orange">— Інтерактивний розрахунок</p>
+          <h2 id="calc-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+            Калькулятор вартості навчання
+          </h2>
+          <p class="mt-2 text-base text-slate-600">
+            Оберіть бажаний тариф і період навчання, щоб дізнатися точну вартість зі знижкою
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 rounded-3xl border border-slate-200 bg-slate-50/70 p-4 sm:p-8 md:grid-cols-12 md:p-10 shadow-sm">
+          
+          <!-- Вибір параметрів -->
+          <div class="space-y-6 md:col-span-7">
+            <div>
+              <label class="block text-sm font-bold text-brand-navy">1. Оберіть тарифний план</label>
+              <div class="mt-3 grid grid-cols-2 gap-3">
+                <button type="button" data-tariff="1800" class="tariff-opt flex flex-col rounded-xl border-2 border-slate-200 bg-white p-3 text-left transition-all hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  <span class="text-xs font-semibold text-slate-500">4 заняття</span>
+                  <span class="text-sm font-bold text-brand-navy">«Старт»</span>
+                  <span class="mt-1 text-xs font-semibold text-brand-orange">1 800 грн/міс</span>
+                </button>
+                <button type="button" data-tariff="3400" class="tariff-opt active-tariff flex flex-col rounded-xl border-2 border-brand-orange bg-white p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  <span class="text-xs font-semibold text-brand-orange">8 занять (Хіт)</span>
+                  <span class="text-sm font-bold text-brand-navy">«Комфорт»</span>
+                  <span class="mt-1 text-xs font-semibold text-brand-orange">3 400 грн/міс</span>
+                </button>
+                <button type="button" data-tariff="4800" class="tariff-opt flex flex-col rounded-xl border-2 border-slate-200 bg-white p-3 text-left transition-all hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  <span class="text-xs font-semibold text-slate-500">12 занять</span>
+                  <span class="text-sm font-bold text-brand-navy">«Інтенсив»</span>
+                  <span class="mt-1 text-xs font-semibold text-brand-orange">4 800 грн/міс</span>
+                </button>
+                <button type="button" data-tariff="2000" class="tariff-opt flex flex-col rounded-xl border-2 border-slate-200 bg-white p-3 text-left transition-all hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  <span class="text-xs font-semibold text-slate-500">Група 8 занять</span>
+                  <span class="text-sm font-bold text-brand-navy">«Груповий»</span>
+                  <span class="mt-1 text-xs font-semibold text-brand-orange">2 000 грн/міс</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold text-brand-navy">2. Період навчання (знижки за тривалість)</label>
+              <div class="mt-3 flex gap-3">
+                <button type="button" data-months="1" data-discount="0" class="month-opt flex-1 rounded-xl border-2 border-slate-200 bg-white py-2.5 text-center text-sm font-bold text-slate-700 transition hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  1 місяць
+                </button>
+                <button type="button" data-months="3" data-discount="0.05" class="month-opt active-month flex-1 rounded-xl border-2 border-brand-orange bg-white py-2.5 text-center text-sm font-bold text-brand-orange transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  3 місяці <span class="block text-[10px] font-medium text-emerald-600">-5%</span>
+                </button>
+                <button type="button" data-months="6" data-discount="0.10" class="month-opt flex-1 rounded-xl border-2 border-slate-200 bg-white py-2.5 text-center text-sm font-bold text-slate-700 transition hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                  6 місяців <span class="block text-[10px] font-medium text-emerald-600">-10%</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <label for="students-range" class="text-sm font-bold text-brand-navy">3. Кількість учнів</label>
+                <span id="students-count-text" class="text-sm font-bold text-brand-orange">1 учень</span>
+              </div>
+              <input id="students-range" type="range" min="1" max="3" value="1" class="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-300 accent-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+            </div>
+          </div>
+
+          <!-- Результат підрахунку -->
+          <div class="flex flex-col justify-between rounded-2xl bg-brand-navy p-6 text-white md:col-span-5">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <span class="text-xs uppercase tracking-wider text-slate-300">Ваш розрахунок</span>
+                <span class="rounded bg-brand-orange px-2 py-0.5 text-xs font-bold text-white" id="discount-badge">Знижка 5%</span>
+              </div>
+
+              <div class="mt-6 space-y-3 text-sm text-slate-300">
+                <div class="flex justify-between">
+                  <span>Тариф за 1 міс:</span>
+                  <span id="base-price-display" class="font-bold text-white">3 400 грн</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Тривалість:</span>
+                  <span id="period-display" class="font-bold text-white">3 місяці</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Кількість учнів:</span>
+                  <span id="students-display" class="font-bold text-white">1</span>
+                </div>
+                <div class="flex justify-between text-emerald-400">
+                  <span>Економія:</span>
+                  <span id="savings-display" class="font-bold">510 грн</span>
+                </div>
+              </div>
+
+              <div class="mt-8 border-t border-white/10 pt-4">
+                <span class="text-xs text-slate-300">Підсумкова вартість курсу:</span>
+                <div class="mt-1">
+                  <span id="total-price" class="text-3xl font-extrabold text-brand-orange">9 690 грн</span>
+                </div>
+              </div>
+            </div>
+
+            <a href="#enroll" class="mt-6 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-brand-orangeHover active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <span>Записатися за цим тарифом</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 6. СЕКЦІЯ "ЯК МИ НАВЧАЄМО"                               -->
+    <!-- ======================================================== -->
+    <section class="border-t border-slate-100 bg-white py-16" aria-labelledby="method-heading">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        
+        <!-- Інтерактивна картка дробів -->
+        <div class="flex flex-col items-center justify-center rounded-3xl bg-blue-50/60 p-8 shadow-sm">
+          <p class="text-xs font-semibold text-slate-500">Наприклад, як зрозуміти дроби?</p>
+          <div class="mt-6 flex items-center justify-center gap-6">
+            <div class="relative h-28 w-28 overflow-hidden rounded-full bg-white shadow-inner">
+              <div class="h-full w-1/2 bg-brand-orange"></div>
+            </div>
+            <span class="text-3xl font-bold text-slate-400" aria-hidden="true">=</span>
+            <div class="flex flex-col items-center text-3xl font-extrabold text-brand-navy">
+              <span>1</span>
+              <div class="h-1 w-8 rounded-full bg-brand-navy"></div>
+              <span>2</span>
+            </div>
+          </div>
+          <p class="mt-6 text-center text-sm font-bold text-brand-navy">
+            Одна з двох рівних частин — це половина.
+          </p>
+          <p class="mt-2 text-center text-xs text-slate-500">
+            Спочатку бачимо сенс. Потім записуємо правило. І лише тоді переходимо до задач.
+          </p>
+        </div>
+
+        <!-- 3 кроки навчання -->
+        <div class="flex flex-col items-start">
+          <p class="text-sm font-bold text-brand-orange">— Як ми навчаємо</p>
+          <h2 id="method-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+            Розуміти, а не заучувати
+          </h2>
+          <p class="mt-3 text-base leading-relaxed text-slate-600">
+            У MathStep навчання — це діалог. Підтримка викладача, наочні пояснення та практика допомагають дитині мислити самостійно.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-6">
+            <div class="flex items-start gap-4">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100/60 text-sm font-bold text-brand-navy">
+                01
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-brand-navy">Знайомимося й слухаємо</h3>
+                <p class="mt-1 text-sm text-slate-600">З’ясовуємо, що вже виходить, а що викликає труднощі. Разом визначаємо навчальні цілі.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100/60 text-sm font-bold text-brand-navy">
+                02
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-brand-navy">Пояснюємо через приклади</h3>
+                <p class="mt-1 text-sm text-slate-600">Пов’язуємо нову тему зі знайомими ситуаціями. Дитина бачить не лише «як», а й «чому».</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100/60 text-sm font-bold text-brand-navy">
+                03
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-brand-navy">Практикуємо й обговорюємо</h3>
+                <p class="mt-1 text-sm text-slate-600">Розв’язуємо разом, а потім самостійно. Аналізуємо помилки без тиску та закріплюємо розуміння.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Секція з відеодемонстрацією уроку -->
+    <section id="demo-video" class="py-12 bg-slate-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-orange mb-2">— Як проходять заняття</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-brand-navy mb-6">
+          Подивіться, як проходить 30-хвилинне пробне заняття
+        </h2>
+        
+        <!-- Адаптивний контейнер для відео -->
+        <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-black/5">
+          <iframe 
+            class="w-full h-full border-0" 
+            src="https://www.youtube-nocookie.com/embed/JTg9qyVy4V4" 
+            title="Відеопрезентація онлайн-уроку в MathStep" 
+            loading="lazy" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 7. ВІДГУКИ (#reviews)                                    -->
+    <!-- ======================================================== -->
+    <section id="reviews" class="scroll-mt-16 border-t border-slate-100 bg-slate-50/50 py-16" aria-labelledby="reviews-heading">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="mb-10 text-left">
+          <p class="text-sm font-bold text-brand-orange">— Погляд батьків та учнів</p>
+          <h2 id="reviews-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+            Навчання починається з довіри
+          </h2>
+          <p class="mt-2 text-xs text-slate-400">
+            Приклади відгуків для макета · не є перевіреними відгуками
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm text-slate-400" aria-hidden="true">👤</span>
+                <span class="text-xs font-semibold text-brand-orange">— Мама учениці</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Олена</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">«Доньці важливо не поспішати. На заняттях спочатку пояснюють сенс, а потім переходять до формул. Їй подобається такий підхід».</p>
+            </div>
+          </article>
+
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm text-slate-400" aria-hidden="true">👤</span>
+                <span class="text-xs font-semibold text-brand-orange">— Учень</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Андрій</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">«Мені подобається розбирати задачі на прикладах. Викладач запитує, як я міркую, і допомагає зрозуміти, де саме я помилився».</p>
+            </div>
+          </article>
+
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md sm:col-span-2 md:col-span-1">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm text-slate-400" aria-hidden="true">👤</span>
+                <span class="text-xs font-semibold text-brand-orange">— Мама учня</span>
+              </div>
+              <h3 class="mt-3 text-lg font-bold text-brand-navy">Наталія</h3>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">«Син може спокійно ставити запитання й повертатися до незрозумілого. Цінуємо уважне ставлення та пояснення без поспіху».</p>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 8. ФОРМА ЗАПИСУ (#enroll)                                -->
+    <!-- ======================================================== -->
+    <section id="enroll" class="scroll-mt-16 bg-white py-16" aria-labelledby="cta-heading">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 md:p-12 shadow-sm transition-shadow duration-300 hover:shadow-md">
+          <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            
+            <div class="flex flex-col justify-between">
+              <div>
+                <div class="h-1 w-12 rounded-full bg-brand-orange"></div>
+                <h2 id="cta-heading" class="mt-4 text-3xl font-bold tracking-tight text-brand-navy">
+                  Спробуйте перше заняття безкоштовно
+                </h2>
+                <p class="mt-4 text-sm leading-relaxed text-slate-600">
+                  Познайомимося з дитиною, визначимо сильні сторони та теми, де потрібна допомога, і покажемо, що математика може бути зрозумілою.
+                </p>
+
+                <ul class="mt-8 flex flex-col gap-4 text-sm text-slate-600">
+                  <li class="flex items-start gap-3">
+                    <svg class="h-5 w-5 shrink-0 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span>30 хвилин спокійного знайомства без оцінок і стресу</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg class="h-5 w-5 shrink-0 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span>Розбір конкретних тем і типових складних завдань</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <svg class="h-5 w-5 shrink-0 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span>Персональні рекомендації викладача щодо подальшого плану</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <form action="#" method="post" class="flex flex-col gap-5">
+              
+              <fieldset>
+                <legend class="text-xs font-semibold text-slate-500">Напрямок навчання</legend>
+                <div class="mt-2 flex flex-col gap-2">
+                  <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-brand-navy">
+                    <input type="radio" name="direction" value="school" checked class="text-brand-navy focus:ring-brand-orange" />
+                    <span>Підтягнути шкільну програму</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-brand-navy">
+                    <input type="radio" name="direction" value="exams" class="text-brand-navy focus:ring-brand-orange" />
+                    <span>Підготовка до контрольних / ДПА</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-brand-navy">
+                    <input type="radio" name="direction" value="advanced" class="text-brand-navy focus:ring-brand-orange" />
+                    <span>Поглиблена математика</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div>
+                <label for="class-select" class="block text-xs font-semibold text-slate-500">Клас учня</label>
+                <select id="class-select" name="class" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy">
+                  <option>5–11 клас</option>
+                  <option>5–6 клас</option>
+                  <option>7–9 клас</option>
+                  <option>10–11 клас (НМТ)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="student-name" class="block text-xs font-semibold text-slate-500">Ім'я учня або батьків</label>
+                <input type="text" id="student-name" name="name" placeholder="Введіть ім'я" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 shadow-sm transition-colors duration-200 focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy" />
+              </div>
+
+              <div>
+                <label for="phone-number" class="block text-xs font-semibold text-slate-500">Номер телефону</label>
+                <input type="tel" id="phone-number" name="phone" placeholder="+380..." class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 shadow-sm transition-colors duration-200 focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy" />
+              </div>
+
+              <div>
+                <span class="block text-xs font-semibold text-slate-500">Зручний спосіб зв'язку</span>
+                <div class="mt-2 flex gap-3">
+                  <label class="flex cursor-pointer items-center justify-center rounded-lg bg-brand-navy px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover active:scale-95 focus-within:ring-2 focus-within:ring-brand-orange">
+                    <input type="radio" name="contact" value="call" checked class="sr-only" />
+                    <span>Дзвінок</span>
+                  </label>
+                  <label class="flex cursor-pointer items-center justify-center rounded-lg bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-200 active:scale-95 focus-within:ring-2 focus-within:ring-brand-orange">
+                    <input type="radio" name="contact" value="telegram" class="sr-only" />
+                    <span>Telegram</span>
+                  </label>
+                  <label class="flex cursor-pointer items-center justify-center rounded-lg bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-200 active:scale-95 focus-within:ring-2 focus-within:ring-brand-orange">
+                    <input type="radio" name="contact" value="viber" class="sr-only" />
+                    <span>Viber</span>
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="mt-2 min-h-[44px] w-full rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                Записатися на безкоштовне заняття
+              </button>
+
+              <p class="text-center text-[11px] text-slate-400">
+                Натискаючи кнопку, ви погоджуєтеся на обробку персональних даних
+              </p>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- 9. СЕМАНТИЧНИЙ ФУТЕР (#contacts-footer)                  -->
+  <!-- ======================================================== -->
+  <!-- Секція контактів із картою міста та месенджерами -->
+  <section id="contacts" class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-orange">— Ми завжди на зв'язку</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-brand-navy">Зв'яжіться з нами</h2>
+        <p class="text-slate-600 mt-2">Навчаємо онлайн по всій Україні та світу. Оберіть зручний спосіб зв'язку:</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        
+        <!-- Лівий блок: Месенджери та графік роботи -->
+        <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+          <div>
+            <h3 class="text-xl font-bold text-brand-navy mb-4">Швидкий зв'язок у месенджерах</h3>
+            <div class="flex flex-wrap gap-3">
+              <!-- Telegram -->
+              <a href="https://t.me" target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#229ED9] text-white font-medium text-sm transition-all hover:opacity-90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <i class="fa-brands font-bold fa-telegram text-base"></i>
+                <span>Telegram</span>
+              </a>
+              <!-- Viber -->
+              <a href="viber://chat" target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#7360F2] text-white font-medium text-sm transition-all hover:opacity-90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <i class="fa-brands font-bold fa-viber text-base"></i>
+                <span>Viber</span>
+              </a>
+              <!-- Phone -->
+              <a href="tel:+380000000000" 
+                 class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-navy text-white font-medium text-sm transition-all hover:opacity-90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+                <i class="fa-solid font-bold fa-phone text-sm"></i>
+                <span>Зателефонувати</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="border-slate-200">
+
+          <!-- Графік роботи та формат -->
+          <div class="space-y-3 text-sm text-slate-600">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-clock text-brand-orange text-base w-5 text-center"></i>
+              <span><strong>Графік підтримки:</strong> Пн–Сб з 09:00 до 20:00</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-laptop text-brand-orange text-base w-5 text-center"></i>
+              <span><strong>Формат уроків:</strong> Інтерактивна платформа Zoom / Google Meet</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-envelope text-brand-orange text-base w-5 text-center"></i>
+              <span><strong>E-mail:</strong> support@mathstep.ua</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правий блок: Загальна карта міста (без конкретної вулиці) -->
+        <div class="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+          <iframe 
+            class="w-full h-full border-0" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d164624.49883196307!2d23.908053748286906!3d49.83268864703816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add7172089a81%3A0x280e551e1837016!2z0JvRjNCy0ZbQssComC3QvtCx0Lsu!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua" 
+            title="Регіон обслуговування онлайн-школи MathStep" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          
+          <!-- Плаваючий бейдж поверх карты -->
+          <div class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-md border border-slate-200 text-xs text-center font-medium text-brand-navy">
+            📍 Головний хаб у м. Львів • Навчаємо учнів по всій Україні
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="scroll-mt-16 border-t border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+
+        <!-- Колонка 1: логотип і опис -->
+        <div class="flex flex-col items-start gap-4">
+          <a href="#hero" class="group flex flex-col items-center justify-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange" aria-label="MathStep, на головну">
+            <svg class="h-9 w-auto" viewBox="0 0 48 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="24" width="7" height="7" fill="#1B315A" />
+              <rect x="13" y="18" width="7" height="7" fill="#1B315A" />
+              <rect x="20" y="12" width="7" height="7" fill="#1B315A" />
+              <rect x="27" y="6" width="7" height="7" fill="#1B315A" />
+              <rect x="34" y="6" width="7" height="25" rx="1.5" fill="#FF6B35" />
+              <path d="M23 27H29M26 24V30" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
+            <span class="-mt-1 text-base font-bold tracking-tight">
+              <span class="text-brand-navy">Math</span><span class="text-brand-orange">Step</span>
+            </span>
+          </a>
+          <p class="leading-relaxed text-slate-600">Онлайн-школа, де діти розуміють математику, а батьки бачать прогрес. Маленькими кроками до впевненості.</p>
+        </div>
+
+        <!-- Колонка 2: навігація -->
+        <nav aria-labelledby="footer-school">
+          <h3 id="footer-school" class="mb-4 text-base font-bold text-brand-navy">Школа</h3>
+          <ul class="flex flex-col gap-3">
+            <li><a href="#hero" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Головна</a></li>
+            <li><a href="#courses" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Курси</a></li>
+            <li><a href="#about" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Про нас</a></li>
+            <li><a href="#tariffs" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Тарифи</a></li>
+            <li><a href="#contacts" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Контакти</a></li>
+          </ul>
+        </nav>
+
+        <!-- Колонка 3: контакти -->
+        <div>
+          <h3 class="mb-4 text-base font-bold text-brand-navy">На зв'язку</h3>
+          <address class="flex flex-col gap-3 not-italic">
+            <a href="tel:+380671234567" class="w-fit rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">+380 67 123 45 67</a>
+            <a href="mailto:hello@mathstep.ua" class="w-fit rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">hello@mathstep.ua</a>
+            <p class="text-slate-600">Пн-Пт: 09:00–18:00</p>
+          </address>
+        </div>
+
+        <!-- Колонка 4: соцмережі -->
+        <nav aria-labelledby="footer-social">
+          <h3 id="footer-social" class="mb-4 text-base font-bold text-brand-navy">Слідкуйте за нами</h3>
+          <ul class="flex flex-col gap-3">
+            <li><a href="#" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Instagram</a></li>
+            <li><a href="#" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Facebook</a></li>
+            <li><a href="#" class="rounded-md text-slate-600 transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">YouTube</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <!-- Нижня смуга з копірайтом -->
+      <div class="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-sm text-slate-600 md:flex-row md:items-center md:justify-between">
+        <p>© 2026 MathStep. Усі права захищені.</p>
+        <ul class="flex flex-col gap-2 sm:flex-row sm:gap-6">
+          <li><a href="#" class="rounded-md transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Політика конфіденційності</a></li>
+          <li><a href="#" class="rounded-md transition-colors duration-200 hover:text-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">Умови користування</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Скрипт відкриття/закриття мобільного меню -->
+  <script>
+    // 1. Мобільне меню
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('.mobile-nav-link');
+
+    btn?.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !isExpanded);
+      menu.classList.toggle('hidden');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        btn?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // 2. Робота AI Помічника
+    const openAiBtn = document.getElementById('open-ai-chat');
+    const closeAiBtn = document.getElementById('close-ai-chat');
+    const aiModal = document.getElementById('ai-modal');
+    const aiForm = document.getElementById('ai-form');
+    const aiInput = document.getElementById('ai-input');
+    const aiMessages = document.getElementById('ai-messages');
+    const quickBtns = document.querySelectorAll('.ai-quick-btn');
+
+    function toggleAiModal(show) {
+      if (show) {
+        aiModal.classList.remove('hidden');
+        aiModal.classList.add('flex');
+      } else {
+        aiModal.classList.add('hidden');
+        aiModal.classList.remove('flex');
+      }
+    }
+
+    openAiBtn?.addEventListener('click', () => toggleAiModal(true));
+    closeAiBtn?.addEventListener('click', () => toggleAiModal(false));
+    aiModal?.addEventListener('click', (e) => {
+      if (e.target === aiModal) toggleAiModal(false);
+    });
+
+    function addMessage(sender, text) {
+      const msgDiv = document.createElement('div');
+      if (sender === 'user') {
+        msgDiv.className = 'flex items-start justify-end gap-2.5';
+        msgDiv.innerHTML = `<div class="rounded-2xl rounded-tr-none bg-brand-orange p-3 text-white">${text}</div>`;
+      } else {
+        msgDiv.className = 'flex items-start gap-2.5';
+        msgDiv.innerHTML = `
+          <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-100 text-brand-navy"><i class="fa-solid fa-robot text-xs"></i></div>
+          <div class="rounded-2xl rounded-tl-none bg-slate-100 p-3 text-slate-700">${text}</div>
+        `;
+      }
+      aiMessages.appendChild(msgDiv);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+    }
+
+    function processAiAnswer(query) {
+      addMessage('user', query);
+      const lower = query.toLowerCase();
+      setTimeout(() => {
+        if (lower.includes('перш') || lower.includes('проход')) {
+          addMessage('ai', 'Перше заняття в MathStep триває 30 хвилин і є безкоштовним! Викладач знайомиться з дитиною та визначає поточний рівень знань.');
+        } else if (lower.includes('трива') || lower.includes('хвилин') || lower.includes('час')) {
+          addMessage('ai', 'Стандартний урок триває 60 хвилин: цього вистачає для розбору теми та практики без перевтоми.');
+        } else if (lower.includes('знижк') || lower.includes('вартіст') || lower.includes('цін')) {
+          addMessage('ai', 'У нас діють знижки: -5% при оплаті за 3 місяці та -10% за 6 місяців. Розрахуйте точну суму в калькуляторі на сторінці!');
+        } else {
+          addMessage('ai', 'Дякую за запитання! Ви можете записатися на безкоштовне пробне заняття через форму нижче, щоб обговорити всі деталі особисто.');
+        }
+      }, 500);
+    }
+
+    aiForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = aiInput.value.trim();
+      if (!val) return;
+      aiInput.value = '';
+      processAiAnswer(val);
+    });
+
+    quickBtns.forEach(b => {
+      b.addEventListener('click', () => processAiAnswer(b.innerText.trim()));
+    });
+
+    // 3. Робота Калькулятора
+    let selectedMonthlyPrice = 3400;
+    let selectedMonths = 3;
+    let selectedDiscount = 0.05;
+    let studentsCount = 1;
+
+    const tariffBtns = document.querySelectorAll('.tariff-opt');
+    const monthBtns = document.querySelectorAll('.month-opt');
+    const studentsSlider = document.getElementById('students-range');
+    const studentsCountText = document.getElementById('students-count-text');
+
+    const basePriceDisplay = document.getElementById('base-price-display');
+    const periodDisplay = document.getElementById('period-display');
+    const studentsDisplay = document.getElementById('students-display');
+    const discountBadge = document.getElementById('discount-badge');
+    const savingsDisplay = document.getElementById('savings-display');
+    const totalPriceDisplay = document.getElementById('total-price');
+
+    function calculateTotal() {
+      const rawTotal = selectedMonthlyPrice * selectedMonths * studentsCount;
+      const discountAmount = Math.round(rawTotal * selectedDiscount);
+      const finalPrice = rawTotal - discountAmount;
+
+      basePriceDisplay.innerText = `${selectedMonthlyPrice.toLocaleString()} грн`;
+      periodDisplay.innerText = selectedMonths === 1 ? '1 місяць' : `${selectedMonths} місяці`;
+      studentsDisplay.innerText = `${studentsCount} (${studentsCount === 1 ? 'дитина' : 'дітей'})`;
+      discountBadge.innerText = selectedDiscount > 0 ? `Знижка ${(selectedDiscount * 100).toFixed(0)}%` : 'Без знижки';
+      savingsDisplay.innerText = `${discountAmount.toLocaleString()} грн`;
+      totalPriceDisplay.innerText = `${finalPrice.toLocaleString()} грн`;
+    }
+
+    tariffBtns.forEach(b => {
+      b.addEventListener('click', () => {
+        tariffBtns.forEach(btn => {
+          btn.classList.remove('border-brand-orange', 'active-tariff');
+          btn.classList.add('border-slate-200');
+        });
+        b.classList.add('border-brand-orange', 'active-tariff');
+        b.classList.remove('border-slate-200');
+        selectedMonthlyPrice = parseInt(b.getAttribute('data-tariff'));
+        calculateTotal();
+      });
+    });
+
+    monthBtns.forEach(b => {
+      b.addEventListener('click', () => {
+        monthBtns.forEach(btn => {
+          btn.classList.remove('border-brand-orange', 'text-brand-orange', 'active-month');
+          btn.classList.add('border-slate-200', 'text-slate-700');
+        });
+        b.classList.add('border-brand-orange', 'text-brand-orange', 'active-month');
+        b.classList.remove('border-slate-200', 'text-slate-700');
+        selectedMonths = parseInt(b.getAttribute('data-months'));
+        selectedDiscount = parseFloat(b.getAttribute('data-discount'));
+        calculateTotal();
+      });
+    });
+
+    studentsSlider?.addEventListener('input', (e) => {
+      studentsCount = parseInt(e.target.value);
+      studentsCountText.innerText = `${studentsCount} ${studentsCount === 1 ? 'учень' : 'учні'}`;
+      calculateTotal();
+    });
+
+    calculateTotal();
+  </script>
+
+</body>
+</html>
