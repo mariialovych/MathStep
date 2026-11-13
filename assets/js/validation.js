@@ -61,10 +61,13 @@
    *   '' (порожній рядок) — значення коректне;
    *   текст помилки       — значення некоректне.
    */
-  function validateUsername(field) {
+ function validateUsername(field) {
     const value = field.value.trim();
+    
+
     if (!value) return 'Вкажіть ім’я.';
     if (value.length < 2) return 'Ім’я має містити щонайменше 2 символи.';
+    if (!nameRegex.test(value)) return 'Ім’я може містити лише літери, дефіси та апострофи.';
     return '';
   }
 
