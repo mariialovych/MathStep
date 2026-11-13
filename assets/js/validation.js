@@ -63,7 +63,7 @@
    */
  function validateUsername(field) {
     const value = field.value.trim();
-    
+    const nameRegex = /^[a-zA-Zа-яА-ЯіІїЇєЄґҐ'’-]{2,}(\s+[a-zA-Zа-яА-ЯіІїЇєЄґҐ'’-]+)*$/;
 
     if (!value) return 'Вкажіть ім’я.';
     if (value.length < 2) return 'Ім’я має містити щонайменше 2 символи.';
