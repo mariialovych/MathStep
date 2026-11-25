@@ -7,7 +7,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  
+
+  <!-- CSS плагінів через CDN (ЛР №10) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
   <!-- Підключення Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -189,6 +193,11 @@
           <h1 id="hero-title" class="mt-4 text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl lg:text-6xl">
             Математика, яку легко зрозуміти
           </h1>
+
+          <!-- Typed.js: текст, що друкується -->
+          <p class="mt-4 min-h-[2.5rem] text-xl font-bold text-brand-orange sm:text-2xl" aria-live="polite">
+            <span id="typed-text"></span>
+          </p>
           
           <p class="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
             Навчаємо онлайн у темпі вашої дитини. Пояснюємо складне простими словами, разом розбираємо задачі й крок за кроком будуємо впевненість.
@@ -679,165 +688,256 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- 7. ВІДГУКИ (#reviews)                                    -->
+    <!-- ГАЛЕРЕЯ ЗАНЯТЬ — FANCYBOX (#gallery)                     -->
     <!-- ======================================================== -->
-    <section id="reviews" class="scroll-mt-16 border-t border-slate-100 bg-slate-50/50 py-16" aria-labelledby="reviews-heading">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="gallery" class="scroll-mt-16 border-t border-slate-100 bg-white px-4 py-16" aria-labelledby="gallery-heading">
+      <div class="max-w-6xl mx-auto">
+        <h2 id="gallery-heading" class="text-center text-3xl md:text-4xl font-extrabold text-[#1B315A]">
+          Як проходять наші заняття
+        </h2>
+        <p class="mt-3 text-center text-slate-600 max-w-2xl mx-auto">
+          Погляньте на процес навчання в MathStep — від онлайн-уроків до роботи з підручниками.
+        </p>
 
-        <div class="mb-10 text-left">
-          <p class="text-sm font-bold text-brand-orange">— Погляд батьків та учнів</p>
-          <h2 id="reviews-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
-            Навчання починається з довіри
-          </h2>
-          <p class="mt-2 text-xs text-slate-400">
-            Приклади відгуків для макета · не є перевіреними відгуками
-          </p>
+        <div class="gallery-grid mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <a href="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&q=80"
+             data-fancybox="mathstep-gallery"
+             data-caption="Онлайн-урок математики на інтерактивній дошці"
+             class="gallery-item group relative block overflow-hidden rounded-xl border-2 border-[#1B315A]/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#FF6B35]">
+            <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&h=450&fit=crop&q=80"
+                 alt="Онлайн-урок математики на інтерактивній дошці"
+                 class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B315A]/80 via-[#1B315A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p class="text-white text-sm font-medium leading-snug">Онлайн-урок математики на інтерактивній дошці</p>
+            </div>
+          </a>
+
+          <a href="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200"
+             data-fancybox="mathstep-gallery"
+             data-caption="Робота з зошитом: конспектуємо нову тему"
+             class="gallery-item group relative block overflow-hidden rounded-xl border-2 border-[#1B315A]/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#FF6B35]">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600"
+                 alt="Робота з зошитом: конспектуємо нову тему"
+                 class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B315A]/80 via-[#1B315A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p class="text-white text-sm font-medium leading-snug">Робота з зошитом: конспектуємо нову тему</p>
+            </div>
+          </a>
+
+          <a href="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80"
+             data-fancybox="mathstep-gallery"
+             data-caption="Розв'язування математичних задач разом із викладачем"
+             class="gallery-item group relative block overflow-hidden rounded-xl border-2 border-[#1B315A]/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#FF6B35]">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=450&fit=crop&q=80"
+                 alt="Розв'язування математичних задач разом із викладачем"
+                 class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B315A]/80 via-[#1B315A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p class="text-white text-sm font-medium leading-snug">Розв'язування математичних задач разом із викладачем</p>
+            </div>
+          </a>
+
+          <a href="https://images.unsplash.com/photo-1588072432836-e10032774350?w=1200&q=80"
+             data-fancybox="mathstep-gallery"
+             data-caption="Онлайн-заняття через відеозв'язок з викладачем"
+             class="gallery-item group relative block overflow-hidden rounded-xl border-2 border-[#1B315A]/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#FF6B35]">
+            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&h=450&fit=crop&q=80"
+                 alt="Онлайн-заняття через відеозв'язок з викладачем"
+                 class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B315A]/80 via-[#1B315A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p class="text-white text-sm font-medium leading-snug">Онлайн-заняття через відеозв'язок з викладачем</p>
+            </div>
+          </a>
+
+          <a href="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80"
+             data-fancybox="mathstep-gallery"
+             data-caption="Навчальні матеріали та підручники MathStep"
+             class="gallery-item group relative block overflow-hidden rounded-xl border-2 border-[#1B315A]/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#FF6B35]">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=450&fit=crop&q=80"
+                 alt="Навчальні матеріали та підручники MathStep"
+                 class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B315A]/80 via-[#1B315A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p class="text-white text-sm font-medium leading-snug">Навчальні матеріали та підручники MathStep</p>
+            </div>
+          </a>
+
+          <a href="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80"
+             data-fancybox="mathstep-gallery"
+             data-caption="Підготовка до занять: вивчаємо навчальні матеріали"
+             class="gallery-item group relative block overflow-hidden rounded-xl border-2 border-[#1B315A]/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-[#FF6B35]">
+            <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=600&h=450&fit=crop&q=80"
+                 alt="Підготовка до занять: вивчаємо навчальні матеріали"
+                 class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1B315A]/80 via-[#1B315A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <p class="text-white text-sm font-medium leading-snug">Підготовка до занять: вивчаємо навчальні матеріали</p>
+            </div>
+          </a>
         </div>
-
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-slate-400" aria-hidden="true">👤</span>
-                <span class="text-xs font-semibold text-brand-orange">— Мама учениці</span>
-              </div>
-              <h3 class="mt-3 text-lg font-bold text-brand-navy">Олена</h3>
-              <p class="mt-3 text-sm leading-relaxed text-slate-600">«Доньці важливо не поспішати. На заняттях спочатку пояснюють сенс, а потім переходять до формул. Їй подобається такий підхід».</p>
-            </div>
-          </article>
-
-          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-slate-400" aria-hidden="true">👤</span>
-                <span class="text-xs font-semibold text-brand-orange">— Учень</span>
-              </div>
-              <h3 class="mt-3 text-lg font-bold text-brand-navy">Андрій</h3>
-              <p class="mt-3 text-sm leading-relaxed text-slate-600">«Мені подобається розбирати задачі на прикладах. Викладач запитує, як я міркую, і допомагає зрозуміти, де саме я помилився».</p>
-            </div>
-          </article>
-
-          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-md sm:col-span-2 md:col-span-1">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-slate-400" aria-hidden="true">👤</span>
-                <span class="text-xs font-semibold text-brand-orange">— Мама учня</span>
-              </div>
-              <h3 class="mt-3 text-lg font-bold text-brand-navy">Наталія</h3>
-              <p class="mt-3 text-sm leading-relaxed text-slate-600">«Син може спокійно ставити запитання й повертатися до незрозумілого. Цінуємо уважне ставлення та пояснення без поспіху».</p>
-            </div>
-          </article>
-        </div>
-
       </div>
     </section>
 
     <!-- ======================================================== -->
-    <!-- 8. ФОРМА ЗАПИСУ (#enroll)                                -->
+    <!-- 7. ВІДГУКИ — СЛАЙДЕР SWIPER (#reviews)                   -->
     <!-- ======================================================== -->
-    <section id="enroll" class="scroll-mt-16 bg-white py-16" aria-labelledby="cta-heading">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <section id="reviews" class="scroll-mt-16 border-t border-slate-100 bg-slate-50/50 px-4 py-16" aria-labelledby="reviews-heading">
+      <div class="max-w-6xl mx-auto">
+        <h2 id="reviews-heading" class="text-center text-3xl md:text-4xl font-extrabold text-[#1B315A]">
+          Відгуки наших учнів та батьків
+        </h2>
+        <p class="mt-3 text-center text-slate-600 max-w-2xl mx-auto">
+          Що кажуть батьки та учні про навчання в MathStep.
+        </p>
+        <p class="mt-2 text-center text-xs text-slate-400">Приклади відгуків для макета · не є перевіреними відгуками</p>
 
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 md:p-12 shadow-sm transition-shadow duration-300 hover:shadow-md">
-          <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            
-            <div class="flex flex-col justify-between">
-              <div>
-                <div class="h-1 w-12 rounded-full bg-brand-orange"></div>
-                <h2 id="cta-heading" class="mt-4 text-3xl font-bold tracking-tight text-brand-navy">
-                  Спробуйте перше заняття безкоштовно
-                </h2>
-                <p class="mt-4 text-sm leading-relaxed text-slate-600">
-                  Познайомимося з дитиною, визначимо сильні сторони та теми, де потрібна допомога, і покажемо, що математика може бути зрозумілою.
-                </p>
-
-                <ul class="mt-8 flex flex-col gap-4 text-sm text-slate-600">
-                  <li class="flex items-start gap-3">
-                    <svg class="h-5 w-5 shrink-0 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    <span>30 хвилин спокійного знайомства без оцінок і стресу</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <svg class="h-5 w-5 shrink-0 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    <span>Розбір конкретних тем і типових складних завдань</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <svg class="h-5 w-5 shrink-0 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    <span>Персональні рекомендації викладача щодо подальшого плану</span>
-                  </li>
-                </ul>
-              </div>
+        <!-- Slider main container -->
+        <div class="reviews-swiper swiper mt-12">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <article class="review-card">
+                <div class="review-stars" aria-label="Рейтинг: 5 з 5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote class="review-text">
+                  «Моя донька за півроку підняла оцінку з 6 до 10. Викладачі пояснюють дуже доступно, а дитина сама просить займатися ще!»
+                </blockquote>
+                <div class="review-author">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&crop=faces" alt="Аватар Олени Коваленко" class="review-avatar" loading="lazy" />
+                  <div>
+                    <p class="review-name">Олена Коваленко</p>
+                    <p class="review-role">Мама учениці 7 класу</p>
+                  </div>
+                </div>
+              </article>
             </div>
 
-            <form id="feedbackForm" action="#" method="post" novalidate class="flex flex-col gap-5">
-              
-              <fieldset>
-                <legend class="text-xs font-semibold text-slate-500">Напрямок навчання</legend>
-                <div class="mt-2 flex flex-col gap-2">
-                  <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-brand-navy">
-                    <input type="radio" name="direction" value="school" checked class="text-brand-navy focus:ring-brand-orange" />
-                    <span>Підтягнути шкільну програму</span>
-                  </label>
-                  <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-brand-navy">
-                    <input type="radio" name="direction" value="exams" class="text-brand-navy focus:ring-brand-orange" />
-                    <span>Підготовка до контрольних / ДПА</span>
-                  </label>
-                  <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer hover:text-brand-navy">
-                    <input type="radio" name="direction" value="advanced" class="text-brand-navy focus:ring-brand-orange" />
-                    <span>Поглиблена математика</span>
-                  </label>
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <article class="review-card">
+                <div class="review-stars" aria-label="Рейтинг: 5 з 5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 </div>
-              </fieldset>
-
-              <div>
-                <label for="class-select" class="block text-xs font-semibold text-slate-500">Клас учня</label>
-                <select id="class-select" name="class" class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy">
-                  <option>5–11 клас</option>
-                  <option>5–6 клас</option>
-                  <option>7–9 клас</option>
-                  <option>10–11 клас (НМТ)</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="student-name" class="block text-xs font-semibold text-slate-500">Ім'я учня або батьків</label>
-                <input type="text" id="student-name" name="name" placeholder="Введіть ім'я" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 shadow-sm transition-colors duration-200 focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy" />
-              </div>
-
-              <div>
-                <label for="phone-number" class="block text-xs font-semibold text-slate-500">Номер телефону</label>
-                <input type="tel" id="phone-number" name="phone" placeholder="+380..." class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 shadow-sm transition-colors duration-200 focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy" />
-              </div>
-
-              <div>
-                <span class="block text-xs font-semibold text-slate-500">Зручний спосіб зв'язку</span>
-                <div class="mt-2 flex gap-3">
-                  <label class="flex cursor-pointer items-center justify-center rounded-lg bg-brand-navy px-4 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover active:scale-95 focus-within:ring-2 focus-within:ring-brand-orange">
-                    <input type="radio" name="contact" value="call" checked class="sr-only" />
-                    <span>Дзвінок</span>
-                  </label>
-                  <label class="flex cursor-pointer items-center justify-center rounded-lg bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-200 active:scale-95 focus-within:ring-2 focus-within:ring-brand-orange">
-                    <input type="radio" name="contact" value="telegram" class="sr-only" />
-                    <span>Telegram</span>
-                  </label>
-                  <label class="flex cursor-pointer items-center justify-center rounded-lg bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-200 active:scale-95 focus-within:ring-2 focus-within:ring-brand-orange">
-                    <input type="radio" name="contact" value="viber" class="sr-only" />
-                    <span>Viber</span>
-                  </label>
+                <blockquote class="review-text">
+                  «Готувався до ЗНО з математики. Міні-курси з тем, які важко давались, допомогли набрати 196 балів. Дуже вдячний!»
+                </blockquote>
+                <div class="review-author">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=faces" alt="Аватар Андрія Мельника" class="review-avatar" loading="lazy" />
+                  <div>
+                    <p class="review-name">Андрій Мельник</p>
+                    <p class="review-role">Випускник 2024</p>
+                  </div>
                 </div>
-              </div>
+              </article>
+            </div>
 
-              <button type="submit" class="mt-2 min-h-[44px] w-full rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-navyHover hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                Записатися на безкоштовне заняття
-              </button>
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+              <article class="review-card">
+                <div class="review-stars" aria-label="Рейтинг: 5 з 5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote class="review-text">
+                  «Син нарешті перестав боятися контрольних. Індивідуальний підхід і зрозумілі пояснення зробили свою справу.»
+                </blockquote>
+                <div class="review-author">
+                  <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop" alt="Аватар Дмитра Шевченка" class="review-avatar" loading="lazy" />
+                  <div>
+                    <p class="review-name">Дмитро Шевченко</p>
+                    <p class="review-role">Тато учня 9 класу</p>
+                  </div>
+                </div>
+              </article>
+            </div>
 
-              <p class="text-center text-[11px] text-slate-400">
-                Натискаючи кнопку, ви погоджуєтеся на обробку персональних даних
-              </p>
-            </form>
+            <!-- Slide 4 -->
+            <div class="swiper-slide">
+              <article class="review-card">
+                <div class="review-stars" aria-label="Рейтинг: 5 з 5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote class="review-text">
+                  «Мене завжди лякала алгебра, але на уроках у MathStep усе стало на свої місця. Тепер я учасниця шкільної олімпіади!»
+                </blockquote>
+                <div class="review-author">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&crop=faces" alt="Аватар Софії Бондаренко" class="review-avatar" loading="lazy" />
+                  <div>
+                    <p class="review-name">Софія Бондаренко</p>
+                    <p class="review-role">Учениця 8 класу</p>
+                  </div>
+                </div>
+              </article>
+            </div>
 
+            <!-- Slide 5 -->
+            <div class="swiper-slide">
+              <article class="review-card">
+                <div class="review-stars" aria-label="Рейтинг: 5 з 5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote class="review-text">
+                  «Зручна платформа, інтерактивні домашні завдання і детальна статистика прогресу. Я бачу, як дитина рухається вперед кожного тижня.»
+                </blockquote>
+                <div class="review-author">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop" alt="Аватар Наталії Гриценко" class="review-avatar" loading="lazy" />
+                  <div>
+                    <p class="review-name">Наталія Гриценко</p>
+                    <p class="review-role">Мама учня 6 класу</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="swiper-slide">
+              <article class="review-card">
+                <div class="review-stars" aria-label="Рейтинг: 5 з 5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <blockquote class="review-text">
+                  «Навчаюсь у 11 класі і готуюся до вступу. Системний підхід до повторення всього матеріалу — те, чого мені не вистачало. Рекомендую всім!»
+                </blockquote>
+                <div class="review-author">
+                  <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=120&h=120&fit=crop&crop=faces" alt="Аватар Максима Ткаченко" class="review-avatar" loading="lazy" />
+                  <div>
+                    <p class="review-name">Максим Ткаченко</p>
+                    <p class="review-role">Учень 11 класу</p>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
-        </div>
 
+          <!-- Navigation buttons -->
+          <div class="swiper-button-prev reviews-nav-prev"></div>
+          <div class="swiper-button-next reviews-nav-next"></div>
+
+          <!-- Pagination -->
+          <div class="swiper-pagination reviews-pagination"></div>
+        </div>
       </div>
     </section>
 
@@ -919,7 +1019,10 @@
 
       </div>
     </div>
-<section class="mx-auto w-full max-w-2xl px-4 py-12" aria-labelledby="contact-title">
+  </section>
+
+  <!-- Форма зворотного зв'язку (#enroll) — сюди ведуть усі кнопки «Записатися» -->
+  <section id="enroll" class="mx-auto w-full max-w-2xl scroll-mt-20 px-4 py-12" aria-labelledby="contact-title">
   <form id="feedbackForm" action="#" method="post" novalidate
       class="rounded-3xl border-t-4 border-[#FF6B35] bg-white p-6 shadow-lg md:p-8">
 
@@ -1294,6 +1397,13 @@
       </button>
     </div>
   </div>
+
+  <!-- JS плагінів через CDN (ЛР №10) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Ініціалізація Swiper, Fancybox, Typed.js -->
+  <script src="assets/js/main.js"></script>
 
   <!-- Підключення скриптів один раз -->
   <script src="assets/js/modal.js" defer></script>

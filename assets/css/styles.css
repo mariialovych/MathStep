@@ -1,0 +1,124 @@
+/* ===== Відгуки: слайдер Swiper (ЛР №10) ===== */
+.reviews-swiper {
+  padding: 1rem 1rem 3rem;
+}
+
+/* Однакова висота карток у рядку */
+.reviews-swiper .swiper-slide {
+  height: auto;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 4px 20px rgba(27, 49, 90, 0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 8px 32px rgba(27, 49, 90, 0.12);
+  transform: translateY(-4px);
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star-icon {
+  width: 22px;
+  height: 22px;
+  color: #FF6B35;
+}
+
+.review-text {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #334155;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.25rem;
+}
+
+.review-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1B315A;
+  flex-shrink: 0;
+}
+
+.review-name {
+  font-weight: 700;
+  color: #1B315A;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.review-role {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+/* Стрілки в кольорі бренду */
+.reviews-nav-prev,
+.reviews-nav-next {
+  color: #FF6B35 !important;
+  --swiper-navigation-sides-offset: 4px;
+}
+
+.reviews-nav-prev:hover,
+.reviews-nav-next:hover {
+  color: #e05824 !important;
+}
+
+/* Крапки пагінації в кольорі бренду */
+.reviews-pagination {
+  --swiper-pagination-color: #FF6B35;
+  --swiper-pagination-bullet-inactive-color: #94a3b8;
+  --swiper-pagination-bullet-inactive-opacity: 0.4;
+  --swiper-pagination-bullet-size: 10px;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+  bottom: 0 !important;
+}
+
+/* ===== Галерея Fancybox ===== */
+.gallery-item {
+  cursor: zoom-in;
+}
+
+.gallery-item img {
+  display: block;
+}
+
+/* ===== Мобільні ===== */
+@media (max-width: 639px) {
+  .review-card {
+    padding: 1.5rem;
+  }
+
+  .review-text {
+    font-size: 1rem;
+  }
+
+  /* На телефоні — свайп і крапки замість стрілок */
+  .reviews-nav-prev,
+  .reviews-nav-next {
+    display: none !important;
+  }
+}
