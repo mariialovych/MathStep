@@ -32,6 +32,7 @@
   </script>
 
   <title>MathStep — Онлайн-школа математики</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
 <body class="min-h-screen bg-white font-sans text-slate-800 antialiased selection:bg-brand-orange selection:text-white">
 
@@ -477,117 +478,133 @@
     
 
     <!-- ======================================================== -->
-    <!-- КАЛЬКУЛЯТОР ВАРТОСТІ НАВЧАННЯ (#calculator)              -->
+    <!-- КАЛЬКУЛЯТОР ВАРТОСТІ НАВЧАННЯ (#calculator) — ЛР №11      -->
     <!-- ======================================================== -->
     <section id="calculator" class="scroll-mt-16 bg-white py-16" aria-labelledby="calc-heading">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        
-        <div class="mb-10 text-center">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <!-- Заголовок -->
+        <div class="mb-10 text-left">
           <p class="text-sm font-bold text-brand-orange">— Інтерактивний розрахунок</p>
           <h2 id="calc-heading" class="mt-1 text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
             Калькулятор вартості навчання
           </h2>
-          <p class="mt-2 text-base text-slate-600">
-            Оберіть бажаний тариф і період навчання, щоб дізнатися точну вартість зі знижкою
+          <p id="calc-description" class="mt-2 text-base text-slate-600">
+            Оберіть тариф, період і додаткові послуги — вартість перерахується одразу.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-8 rounded-3xl border border-slate-200 bg-slate-50/70 p-4 sm:p-8 md:grid-cols-12 md:p-10 shadow-sm">
-          
-          <!-- Вибір параметрів -->
-          <div class="space-y-6 md:col-span-7">
+        <form id="calc-form" data-calc-widget class="grid grid-cols-1 gap-8 rounded-3xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm sm:p-8 lg:grid-cols-12 lg:p-10"
+              aria-describedby="calc-description" novalidate>
+
+          <!-- ===== Параметри ===== -->
+          <fieldset class="min-w-0 space-y-6 lg:col-span-7">
+            <legend class="sr-only">Параметри навчання</legend>
+
+            <!-- 1. Тариф -->
             <div>
-              <label class="block text-sm font-bold text-brand-navy">1. Оберіть тарифний план</label>
-              <div class="mt-3 grid grid-cols-2 gap-3">
-                <button type="button" data-tariff="1800" class="tariff-opt flex flex-col rounded-xl border-2 border-slate-200 bg-white p-3 text-left transition-all hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  <span class="text-xs font-semibold text-slate-500">4 заняття</span>
-                  <span class="text-sm font-bold text-brand-navy">«Старт»</span>
-                  <span class="mt-1 text-xs font-semibold text-brand-orange">1 800 грн/міс</span>
-                </button>
-                <button type="button" data-tariff="3400" class="tariff-opt active-tariff flex flex-col rounded-xl border-2 border-brand-orange bg-white p-3 text-left shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  <span class="text-xs font-semibold text-brand-orange">8 занять (Хіт)</span>
-                  <span class="text-sm font-bold text-brand-navy">«Комфорт»</span>
-                  <span class="mt-1 text-xs font-semibold text-brand-orange">3 400 грн/міс</span>
-                </button>
-                <button type="button" data-tariff="4800" class="tariff-opt flex flex-col rounded-xl border-2 border-slate-200 bg-white p-3 text-left transition-all hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  <span class="text-xs font-semibold text-slate-500">12 занять</span>
-                  <span class="text-sm font-bold text-brand-navy">«Інтенсив»</span>
-                  <span class="mt-1 text-xs font-semibold text-brand-orange">4 800 грн/міс</span>
-                </button>
-                <button type="button" data-tariff="2000" class="tariff-opt flex flex-col rounded-xl border-2 border-slate-200 bg-white p-3 text-left transition-all hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  <span class="text-xs font-semibold text-slate-500">Група 8 занять</span>
-                  <span class="text-sm font-bold text-brand-navy">«Груповий»</span>
-                  <span class="mt-1 text-xs font-semibold text-brand-orange">2 000 грн/міс</span>
-                </button>
-              </div>
+              <label for="calc-tariff" class="block text-sm font-bold text-brand-navy">1. Тариф</label>
+              <select id="calc-tariff" data-calc="tariff" name="tariff" aria-describedby="calc-tariff-error"
+                      class="mt-2 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-800 shadow-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy">
+                <option value="1800">«Старт» — 1 800 грн/міс</option>
+                <option value="3400" selected>«Комфорт» — 3 400 грн/міс</option>
+                <option value="4800">«Інтенсив» — 4 800 грн/міс</option>
+                <option value="2000">Груповий — 2 000 грн/міс</option>
+              </select>
+              <p id="calc-tariff-error" data-calc="tariff-error" class="mt-1.5 hidden items-start gap-1.5 rounded-md bg-red-50 px-2.5 py-1.5 text-sm font-medium text-red-700" role="alert"><svg class="mt-0.5 h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 10-2 0v4a1 1 0 102 0V6zm-1 9a1.25 1.25 0 100-2.5A1.25 1.25 0 0010 15z" clip-rule="evenodd"/></svg><span data-error-text></span></p>
             </div>
 
+            <!-- 2. Кількість місяців -->
             <div>
-              <label class="block text-sm font-bold text-brand-navy">2. Період навчання (знижки за тривалість)</label>
-              <div class="mt-3 flex gap-3">
-                <button type="button" data-months="1" data-discount="0" class="month-opt flex-1 rounded-xl border-2 border-slate-200 bg-white py-2.5 text-center text-sm font-bold text-slate-700 transition hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  1 місяць
-                </button>
-                <button type="button" data-months="3" data-discount="0.05" class="month-opt active-month flex-1 rounded-xl border-2 border-brand-orange bg-white py-2.5 text-center text-sm font-bold text-brand-orange transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  3 місяці <span class="block text-[10px] font-medium text-emerald-600">-5%</span>
-                </button>
-                <button type="button" data-months="6" data-discount="0.10" class="month-opt flex-1 rounded-xl border-2 border-slate-200 bg-white py-2.5 text-center text-sm font-bold text-slate-700 transition hover:border-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
-                  6 місяців <span class="block text-[10px] font-medium text-emerald-600">-10%</span>
-                </button>
+              <div class="flex items-center justify-between gap-3">
+                <label for="calc-months" class="block text-sm font-bold text-brand-navy">2. Кількість місяців</label>
+                <span id="calc-discount-badge" data-calc="badge" class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
+                  Знижка 5%
+                </span>
               </div>
+              <input id="calc-months" data-calc="months" name="months" type="number" inputmode="numeric"
+                     min="1" max="12" step="1" value="3" required
+                     aria-describedby="calc-months-hint calc-months-error"
+                     class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-800 shadow-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy">
+              <p id="calc-months-hint" class="mt-1.5 text-xs text-slate-500">Від 1 до 12. З 3 місяців — знижка 5%, з 6 — 10%.</p>
+              <p id="calc-months-error" data-calc="months-error" class="mt-1.5 hidden items-start gap-1.5 rounded-md bg-red-50 px-2.5 py-1.5 text-sm font-medium text-red-700" role="alert"><svg class="mt-0.5 h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 10-2 0v4a1 1 0 102 0V6zm-1 9a1.25 1.25 0 100-2.5A1.25 1.25 0 0010 15z" clip-rule="evenodd"/></svg><span data-error-text></span></p>
             </div>
 
+            <!-- 3. Кількість учнів -->
             <div>
-              <div class="flex items-center justify-between">
-                <label for="students-range" class="text-sm font-bold text-brand-navy">3. Кількість учнів</label>
-                <span id="students-count-text" class="text-sm font-bold text-brand-orange">1 учень</span>
-              </div>
-              <input id="students-range" type="range" min="1" max="3" value="1" class="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-300 accent-brand-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy">
+              <label for="calc-students" class="block text-sm font-bold text-brand-navy">3. Кількість учнів</label>
+              <input id="calc-students" data-calc="students" name="students" type="number" inputmode="numeric"
+                     min="1" max="5" step="1" value="1" required
+                     aria-describedby="calc-students-hint calc-students-error"
+                     class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-800 shadow-sm focus:border-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-navy">
+              <p id="calc-students-hint" class="mt-1.5 text-xs text-slate-500">Від 1 до 5 учнів.</p>
+              <p id="calc-students-error" data-calc="students-error" class="mt-1.5 hidden items-start gap-1.5 rounded-md bg-red-50 px-2.5 py-1.5 text-sm font-medium text-red-700" role="alert"><svg class="mt-0.5 h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 10-2 0v4a1 1 0 102 0V6zm-1 9a1.25 1.25 0 100-2.5A1.25 1.25 0 0010 15z" clip-rule="evenodd"/></svg><span data-error-text></span></p>
             </div>
-          </div>
 
-          <!-- Результат підрахунку -->
-          <div class="flex flex-col justify-between rounded-2xl bg-brand-navy p-6 text-white md:col-span-5">
+            <!-- 4–5. Додаткові послуги -->
+            <fieldset class="min-w-0">
+              <legend class="text-sm font-bold text-brand-navy">4. Додаткові послуги</legend>
+              <div class="mt-3 flex flex-col gap-3">
+                <label for="calc-nmt" class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 transition hover:border-brand-navy">
+                  <input id="calc-nmt" data-calc="nmt" name="nmt" type="checkbox" value="500"
+                         class="mt-0.5 h-5 w-5 shrink-0 rounded accent-brand-orange">
+                  <span class="text-sm text-slate-700">
+                    <span class="font-semibold text-brand-navy">Підготовка до НМТ</span>
+                    <span class="block text-xs text-slate-500">+500 грн/міс</span>
+                  </span>
+                </label>
+                <label for="calc-homework" class="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 transition hover:border-brand-navy">
+                  <input id="calc-homework" data-calc="homework" name="homework" type="checkbox" value="300"
+                         class="mt-0.5 h-5 w-5 shrink-0 rounded accent-brand-orange">
+                  <span class="text-sm text-slate-700">
+                    <span class="font-semibold text-brand-navy">Перевірка домашніх завдань</span>
+                    <span class="block text-xs text-slate-500">+300 грн/міс</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- ===== Результат ===== -->
+          <aside class="flex min-w-0 flex-col justify-between rounded-2xl bg-brand-navy p-6 text-white lg:col-span-5" aria-labelledby="calc-result-title">
             <div>
               <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                <span class="text-xs uppercase tracking-wider text-slate-300">Ваш розрахунок</span>
-                <span class="rounded bg-brand-orange px-2 py-0.5 text-xs font-bold text-white" id="discount-badge">Знижка 5%</span>
+                <h3 id="calc-result-title" class="text-xs uppercase tracking-wider text-slate-300">Ваш розрахунок</h3>
               </div>
 
-              <div class="mt-6 space-y-3 text-sm text-slate-300">
-                <div class="flex justify-between">
-                  <span>Тариф за 1 міс:</span>
-                  <span id="base-price-display" class="font-bold text-white">3 400 грн</span>
+              <dl id="calc-result" class="mt-6 space-y-3 text-sm text-slate-300" aria-live="polite">
+                <div class="flex justify-between gap-4">
+                  <dt>Вартість за місяць:</dt>
+                  <dd id="calc-monthly" data-calc="monthly" class="font-bold text-white">—</dd>
                 </div>
-                <div class="flex justify-between">
-                  <span>Тривалість:</span>
-                  <span id="period-display" class="font-bold text-white">3 місяці</span>
+                <div class="flex justify-between gap-4">
+                  <dt>Період × учні:</dt>
+                  <dd id="calc-period" data-calc="period" class="font-bold text-white">—</dd>
                 </div>
-                <div class="flex justify-between">
-                  <span>Кількість учнів:</span>
-                  <span id="students-display" class="font-bold text-white">1</span>
+                <div class="flex justify-between gap-4">
+                  <dt>Сума без знижки:</dt>
+                  <dd id="calc-subtotal" data-calc="subtotal" class="font-bold text-white">—</dd>
                 </div>
-                <div class="flex justify-between text-emerald-400">
-                  <span>Економія:</span>
-                  <span id="savings-display" class="font-bold">510 грн</span>
+                <div class="flex justify-between gap-4 text-emerald-400">
+                  <dt>Знижка:</dt>
+                  <dd id="calc-discount" data-calc="discount" class="font-bold">—</dd>
                 </div>
-              </div>
+              </dl>
 
               <div class="mt-8 border-t border-white/10 pt-4">
-                <span class="text-xs text-slate-300">Підсумкова вартість курсу:</span>
-                <div class="mt-1">
-                  <span id="total-price" class="text-3xl font-extrabold text-brand-orange">9 690 грн</span>
-                </div>
+                <p class="text-xs text-slate-300">Підсумкова вартість курсу:</p>
+                <p id="calc-total" data-calc="total" class="mt-1 break-words text-3xl font-extrabold text-brand-orange">—</p>
+                <p id="calc-status" data-calc="status" class="mt-2 hidden text-sm font-medium text-orange-200"></p>
               </div>
             </div>
 
-            <a href="#enroll" class="mt-6 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-brand-orangeHover active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <span>Записатися за цим тарифом</span>
+            <a id="calc-cta" href="#enroll"
+               class="mt-6 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-brand-orangeHover active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              Записатися за цим тарифом
             </a>
-          </div>
+          </aside>
 
-        </div>
-
+        </form>
       </div>
     </section>
 
@@ -1051,7 +1068,7 @@
 
       <!-- Телефон -->
       <div>
-        <label for="contact-phone" class="mb-1.5 block text-sm font-semibold text-slate-800">Телефн *</label>
+        <label for="contact-phone" class="mb-1.5 block text-sm font-semibold text-slate-800">Телефон *</label>
         <input id="contact-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"
                required pattern="\+380[0-9]{9}" maxlength="13"
                aria-describedby="contact-phone-hint contact-phone-error"
@@ -1260,18 +1277,26 @@
       if (e.target === aiModal) toggleAiModal(false);
     });
 
+    // Безпечний вивід: текст повідомлення вставляється через textContent,
+    // тому HTML-теги з чату показуються як звичайний текст (захист від XSS)
     function addMessage(sender, text) {
       const msgDiv = document.createElement('div');
+      const bubble = document.createElement('div');
+      bubble.textContent = text;
+
       if (sender === 'user') {
         msgDiv.className = 'flex items-start justify-end gap-2.5';
-        msgDiv.innerHTML = `<div class="rounded-2xl rounded-tr-none bg-brand-orange p-3 text-white">${text}</div>`;
+        bubble.className = 'rounded-2xl rounded-tr-none bg-brand-orange p-3 text-white break-words';
       } else {
         msgDiv.className = 'flex items-start gap-2.5';
-        msgDiv.innerHTML = `
-          <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-100 text-brand-navy"><i class="fa-solid fa-robot text-xs"></i></div>
-          <div class="rounded-2xl rounded-tl-none bg-slate-100 p-3 text-slate-700">${text}</div>
-        `;
+        const avatar = document.createElement('div');
+        avatar.className = 'flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-100 text-brand-navy';
+        avatar.innerHTML = '<i class="fa-solid fa-robot text-xs" aria-hidden="true"></i>'; // статична іконка, без даних користувача
+        msgDiv.appendChild(avatar);
+        bubble.className = 'rounded-2xl rounded-tl-none bg-slate-100 p-3 text-slate-700 break-words';
       }
+
+      msgDiv.appendChild(bubble);
       aiMessages.appendChild(msgDiv);
       aiMessages.scrollTop = aiMessages.scrollHeight;
     }
@@ -1304,71 +1329,7 @@
       b.addEventListener('click', () => processAiAnswer(b.innerText.trim()));
     });
 
-    // 3. Робота Калькулятора
-    let selectedMonthlyPrice = 3400;
-    let selectedMonths = 3;
-    let selectedDiscount = 0.05;
-    let studentsCount = 1;
-
-    const tariffBtns = document.querySelectorAll('.tariff-opt');
-    const monthBtns = document.querySelectorAll('.month-opt');
-    const studentsSlider = document.getElementById('students-range');
-    const studentsCountText = document.getElementById('students-count-text');
-
-    const basePriceDisplay = document.getElementById('base-price-display');
-    const periodDisplay = document.getElementById('period-display');
-    const studentsDisplay = document.getElementById('students-display');
-    const discountBadge = document.getElementById('discount-badge');
-    const savingsDisplay = document.getElementById('savings-display');
-    const totalPriceDisplay = document.getElementById('total-price');
-
-    function calculateTotal() {
-      const rawTotal = selectedMonthlyPrice * selectedMonths * studentsCount;
-      const discountAmount = Math.round(rawTotal * selectedDiscount);
-      const finalPrice = rawTotal - discountAmount;
-
-      basePriceDisplay.innerText = `${selectedMonthlyPrice.toLocaleString()} грн`;
-      periodDisplay.innerText = selectedMonths === 1 ? '1 місяць' : `${selectedMonths} місяці`;
-      studentsDisplay.innerText = `${studentsCount} (${studentsCount === 1 ? 'дитина' : 'дітей'})`;
-      discountBadge.innerText = selectedDiscount > 0 ? `Знижка ${(selectedDiscount * 100).toFixed(0)}%` : 'Без знижки';
-      savingsDisplay.innerText = `${discountAmount.toLocaleString()} грн`;
-      totalPriceDisplay.innerText = `${finalPrice.toLocaleString()} грн`;
-    }
-
-    tariffBtns.forEach(b => {
-      b.addEventListener('click', () => {
-        tariffBtns.forEach(btn => {
-          btn.classList.remove('border-brand-orange', 'active-tariff');
-          btn.classList.add('border-slate-200');
-        });
-        b.classList.add('border-brand-orange', 'active-tariff');
-        b.classList.remove('border-slate-200');
-        selectedMonthlyPrice = parseInt(b.getAttribute('data-tariff'));
-        calculateTotal();
-      });
-    });
-
-    monthBtns.forEach(b => {
-      b.addEventListener('click', () => {
-        monthBtns.forEach(btn => {
-          btn.classList.remove('border-brand-orange', 'text-brand-orange', 'active-month');
-          btn.classList.add('border-slate-200', 'text-slate-700');
-        });
-        b.classList.add('border-brand-orange', 'text-brand-orange', 'active-month');
-        b.classList.remove('border-slate-200', 'text-slate-700');
-        selectedMonths = parseInt(b.getAttribute('data-months'));
-        selectedDiscount = parseFloat(b.getAttribute('data-discount'));
-        calculateTotal();
-      });
-    });
-
-    studentsSlider?.addEventListener('input', (e) => {
-      studentsCount = parseInt(e.target.value);
- studentsCountText.innerText = `${studentsCount} ${studentsCount === 1 ? 'учень' : 'учні'}`;
-      calculateTotal();
-    });
-
-    calculateTotal();
+    // 3. Калькулятор вартості навчання — логіка винесена в assets/js/widget.js (ЛР №11)
   </script>
 
   <!-- Модальне вікно успішного надсилання -->
@@ -1404,6 +1365,8 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <!-- Ініціалізація Swiper, Fancybox, Typed.js -->
   <script src="assets/js/main.js"></script>
+  <!-- Калькулятор вартості навчання (ЛР №11) -->
+  <script src="assets/js/widget.js"></script>
 
   <!-- Підключення скриптів один раз -->
   <script src="assets/js/modal.js" defer></script>
